@@ -1,8 +1,8 @@
-import css from './TrendingItem.module.css';
+// import css from './TrendingItem.module.css';
 
-const TrendingItem = () => {
+const TrendingItem = ({title}) => {
     return (
-        <li></li>
+        <li>{title}</li>
     );
 };
 

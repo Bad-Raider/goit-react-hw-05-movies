@@ -1,15 +1,4 @@
-const KEY = 'f770b37ddd63e16fc1e03e739fd25a3a';
-
-const Api = () => {
-    return (
-        <>
-            <h1>Trending today</h1>
-            <ul></ul>
-        </>
-    );
-};
-
-export default Api;
+// const KEY = 'f770b37ddd63e16fc1e03e739fd25a3a';
 
 
 
@@ -21,11 +10,10 @@ const options = {
   }
 };
 
-fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
+const fetchTrendingFimls = fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
   .then(response => response.json())
-  .then(response => console.log(response))
   .catch(err => console.error(err));
 
 
-// curl --request GET \
-//      --url 'https://api.themoviedb.org/3/movie/11?api_key=f770b37ddd63e16fc1e03e739fd25a3a'
+export default fetchTrendingFimls;
+
