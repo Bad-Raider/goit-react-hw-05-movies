@@ -1,23 +1,13 @@
 import { Container } from '../../components/App.styled';
-import TrendingItem from '../../components/TrendingItem/TrendingItem';
-import fetchTrendingFimls from '../../helper/API';
-
- 
+import TrendingList from 'components/TrendingList/TrendingList';
 
 
 const Home = () => {
 
-
-    
-    
-
-
     return (
         <main>
             <Container>
-                <h1>Trending today</h1>
-                <ul>
-                </ul>
+                <TrendingList/>
             </Container>
         </main>
     );
