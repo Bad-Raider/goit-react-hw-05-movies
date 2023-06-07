@@ -11,10 +11,13 @@ const options = {
   }
 };
 
-const fetchTraidingFilms = fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
+export const fetchTraidingFilms = fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
   .then(response => response.json())
   .catch(err => console.error(err));
 
-  // fetchTraidingFilms.then(data => console.log(data.results))
 
-export default fetchTraidingFilms;
+export const fetchMovieByName = (name) => {
+  fetch(`https://api.themoviedb.org/3/search/movie?query=${name}&include_adult=false&language=en-US&page=1`, options)
+  .then(response => response.json())
+  .catch(err => console.error(err));
+};

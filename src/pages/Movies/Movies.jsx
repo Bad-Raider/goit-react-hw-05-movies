@@ -1,6 +1,8 @@
+import MoviesInfo from "components/MoviesInfo/MoviesInfo";
+
 const Movies = () => {
     return (
-        <div>Movies</div>
+        <MoviesInfo/>
     );
 };
 

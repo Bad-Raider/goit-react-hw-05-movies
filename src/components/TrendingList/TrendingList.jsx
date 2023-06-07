@@ -1,6 +1,6 @@
 import { useEffect, useState  } from 'react';
 import TrendingItem from '../../components/TrendingItem/TrendingItem';
-import fetchTraidingFilms from 'helper/API';
+import {fetchTraidingFilms} from 'helper/API';
 
 const TrendingList = () => {
 
