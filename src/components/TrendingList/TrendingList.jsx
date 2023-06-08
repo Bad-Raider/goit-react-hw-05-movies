@@ -1,38 +1,24 @@
 import { useEffect, useState  } from 'react';
-import TrendingItem from '../../components/TrendingItem/TrendingItem';
-import {fetchTraidingFilms} from 'helper/API';
+import { fetchTraidingMovies } from 'helper/API';
+import MoviesList from 'components/MoviesList/MoviesList';
 
 const TrendingList = () => {
 
     const [filmInfo, setFilmInfo] = useState('');
 
     useEffect(() => {
-
-        fetchTraidingFilms.then(data => {
-            const arrayInfo = data.results
-            setFilmInfo(arrayInfo);
-        });
-        
+        fetchTraidingMovies()
+            .then(data => setFilmInfo(data.results))
+            .catch(err => console.log(err));        
     }, []);
     
     console.log(filmInfo);
     
     return (
         <>
-        <h1>title</h1>
-        <ul>
-            {
-                filmInfo &&
-                (filmInfo.map(film =>
-                    <TrendingItem
-                        key={film.id}
-                        title={film.title}
-                        name={film.name}
-                    />
-                ))
-            }
-        </ul>
-    </>
+            <h1>title</h1>
+            {filmInfo && (<MoviesList arrMovies={filmInfo} />)}
+        </>
     );
 };
 

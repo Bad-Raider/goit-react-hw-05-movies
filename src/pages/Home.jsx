@@ -1,4 +1,4 @@
-import { Container } from '../../components/App.styled';
+import { Container } from '../components/App.styled';
 import TrendingList from 'components/TrendingList/TrendingList';
 
 

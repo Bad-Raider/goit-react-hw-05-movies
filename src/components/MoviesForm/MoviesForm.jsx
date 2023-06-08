@@ -1,11 +1,10 @@
 import { useState } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
-const MoviesForm = (onSubmit) => {
+const MoviesForm = ({onSubmit}) => {
 
     const [name, setName] = useState("");
 
-    
     const handleChange = (e) => {
         setName(e.currentTarget.value);
     };
@@ -43,6 +42,6 @@ export default MoviesForm;
 
 
 
-// ContactForm.propTypes = {
-//     onSubmit: PropTypes.func.isRequired,
-// };
+MoviesForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+};

@@ -1,23 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MoviesForm from "components/MoviesForm/MoviesForm";
+import MoviesList from "components/MoviesList/MoviesList";
+import { fetchMovieByName } from "helper/API";
 
-const MoviesInfo = () => {  
+const MoviesInfo = () => {
 
     const [name, setName] = useState('');
-    // const [arrMovies, setArrMovies] = useState('');
-
+    const [arrMovies, setArrMovies] = useState(null);
     
+    console.log(arrMovies);
+
+    useEffect(() => {
+        if (name) {
+            fetchMovieByName(name)
+                .then(data => setArrMovies(data.results))
+                .catch(err => console.log(err))
+        };
+    }, [name]);
 
     const onSubmit = (name) => {
         setName(name);
     };
 
-    console.log(name);
-
     return (
-        // <div>MoviesInfo</div>
-        <MoviesForm onSubmit={onSubmit} />
- )    
+        <>
+            <MoviesForm onSubmit={onSubmit} />
+
+            {arrMovies && <MoviesList arrMovies={arrMovies} />}
+        </>
+    )
 }
 
 export default MoviesInfo;
