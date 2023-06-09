@@ -12,7 +12,6 @@ const TrendingList = () => {
             .catch(err => console.log(err));        
     }, []);
     
-    console.log(filmInfo);
     
     return (
         <>

@@ -38,7 +38,6 @@ const MoviesDetails = () => {
             />
         );
     }
-    console.log(film);
 
     
 };

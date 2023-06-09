@@ -2,53 +2,42 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchMoviesCast } from "helper/API";
 
-
 const MovieCast = () => {
-    // const baseUrl = 'https://image.tmdb.org/t/p/w500';
-
+    const baseUrl = 'https://image.tmdb.org/t/p/w500';
     const { id } = useParams();
-    const [actors, setActors] = useState(null);
+    const [cast, setCast] = useState([]);
 
     useEffect(() => {
-        if (id) {
-            console.log('useEffect start');
-            fetchMoviesCast(id)
-                .then(data =>
-                    // console.log(data.cast)
-                    setActors(data)
-                    )
-        }
+        async function fetch() {
+            try {
+                const { cast } = await fetchMoviesCast(id);
+
+                const filteredResults = cast.map(
+                    ({ name, character, profile_path, id }) => {
+                        return { name, character, profile_path, id };
+                    }
+                );
+                setCast(filteredResults);
+            } catch (err) {
+                console.log(err.message);
+            }
+        };
+        fetch();
+            
     }, [id]);
-    
-
  
-    // if () {
-    //     return <>
-    //         <h1>Cast:</h1>
-    //         <ul>
-    //             {
-    //                 actors.map(({ character, original_name, profile_path, id }) => (
-    //                 <li key={id}>
-    //                     <img width={'40px'} src={`${baseUrl}${profile_path}`} alt={original_name} />
-    //                     <p>{original_name}</p>
-    //                     <p>character: {character}</p>
-    //                 </li>))
-    //             }
-    //         </ul>
-    //     </>
-    // }
-
-    console.log('actors-----', actors);
-    console.log('actors.length-----', actors.length);
-    console.log('id----', id);
-    // if (!actors ) {
-    //     <div>404</div>
-    // };
-    return <div>404</div> 
-
-        
-    
-    
+    return  (cast.length === 0)
+        ? <div> Not info by actors </div>
+        : <ul>
+            {
+                cast.map(({ character, original_name, profile_path, id }) => (
+                    <li key={id}>
+                        <img width={'40px'} src={`${baseUrl}${profile_path}`} alt={original_name} />
+                        <p>{original_name}</p>
+                        <p>character: {character}</p>
+                    </li>))
+            }
+        </ul>;
 };
 
 export default MovieCast;
