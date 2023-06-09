@@ -18,7 +18,6 @@ const MoviesDetails = () => {
           };
     }, [id]);
 
-    console.log(film);
 
     if (film) {
         const { title, overview, genres, poster_path } = film;
