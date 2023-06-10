@@ -3,6 +3,8 @@ import { useSearchParams } from "react-router-dom";
 import MoviesForm from "components/MoviesForm/MoviesForm";
 import MoviesList from "components/MoviesList/MoviesList";
 import { fetchMovieByName } from "helper/API";
+import { Container } from '../components/App.styled';
+
 
 
 const Movies = () => {
@@ -26,10 +28,10 @@ const Movies = () => {
     };
 
     return (
-        <>
+        <Container>
             <MoviesForm onSubmit={onSubmit} />
             {arrMovies && <MoviesList arrMovies={arrMovies} />}
-        </>
+        </Container>
     )
 }
 

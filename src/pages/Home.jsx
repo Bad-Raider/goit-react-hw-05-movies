@@ -11,14 +11,18 @@ const Home = () => {
 
     useEffect(() => {
         fetchTraidingMovies()
-            .then(data => setFilmInfo(data.results))
+            .then(data => 
+               
+                setFilmInfo(data.results)
+            )
             .catch(err => console.log(err));        
     }, []);
+
     return (
         <main>
             <Container>
                 <>
-            <h1>Trending list</h1>
+            <h1>Trending today</h1>
             {filmInfo && (<MoviesList arrMovies={filmInfo} />)}
         </>
             </Container>
