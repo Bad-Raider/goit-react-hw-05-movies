@@ -5,6 +5,7 @@ import { useEffect, useState, useRef} from "react";
 import MovieDetailsItem from "components/MovieDetailsItem/MovieDetailsItem";
 import { Container } from "components/App.styled";
 
+
 const MoviesDetails = () => {
 
     
@@ -14,20 +15,37 @@ const MoviesDetails = () => {
     const backLinkHref = useRef(location.state?.from ?? "/movies");
     
     useEffect(() => {
-        if (id || id !== '') {
+        if (id ) {
             fetchMoviesDetails(id)
-                .then(data => setFilm(data))
+                .then(data => {
+                    console.log('data', data);
+                    const { title, overview, genres, poster_path, release_date, vote_average } = data;
+                    setFilm({ title, overview, genres, poster_path, release_date, vote_average })
+                })
                 .catch(error => console.error(error))
-          };
+        };
     }, [id]);
 
 
     if (film) {
-        const { title, overview, genres, poster_path } = film;
+        const { title, overview, genres, poster_path, release_date, vote_average } = film;
+
         let genresFull = null;
+        let year = null;
+        let score = null;
+
         if (genres) {
             genresFull = genres.map(el => el.name).join(', ');
         };
+
+        if (release_date) { 
+            year = new Date(release_date).getFullYear();
+        };
+
+        if (vote_average) {
+            score = (vote_average * 100 / 10).toFixed(0);
+            
+        }
 
         return (
             <main>
@@ -38,7 +56,10 @@ const MoviesDetails = () => {
                         overview={overview}
                         genres={genresFull}
                         poster_path={poster_path}
+                        year={year}
+                        score={score}
                     />
+                    <h2>Additional informations</h2>
                     <ul>
                         <li><Link to='cast' >Cast</Link></li>
                         <li><Link to='reviews' >Reviews</Link></li>
@@ -48,7 +69,6 @@ const MoviesDetails = () => {
             </main>
         );
     };
-
     
 };
 

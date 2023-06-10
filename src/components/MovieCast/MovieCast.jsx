@@ -27,7 +27,7 @@ const MovieCast = () => {
     }, [id]);
  
     return  (cast.length === 0)
-        ? <div> Not info by actors </div>
+        ? <div> No info about actors </div>
         : <ul>
             {
                 cast.map(({ character, original_name, profile_path, id }) => (

@@ -11,10 +11,15 @@ const Home = () => {
 
     useEffect(() => {
         fetchTraidingMovies()
-            .then(data => 
-               
-                setFilmInfo(data.results)
-            )
+            .then(data => {   
+                console.log('data', data);
+               const filteredResults = data.results.map(
+                    ({ title, poster_path, id }) => {
+                        return { title, poster_path, id };
+                    }
+                );
+                setFilmInfo(filteredResults)
+            })
             .catch(err => console.log(err));        
     }, []);
 
@@ -22,9 +27,9 @@ const Home = () => {
         <main>
             <Container>
                 <>
-            <h1>Trending today</h1>
-            {filmInfo && (<MoviesList arrMovies={filmInfo} />)}
-        </>
+                    <h1>Trending today</h1>
+                    {filmInfo && (<MoviesList arrMovies={filmInfo} />)}
+                </>
             </Container>
         </main>
     );
