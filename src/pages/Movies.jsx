@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, } from "react";
+import { useSearchParams } from "react-router-dom";
 import MoviesForm from "components/MoviesForm/MoviesForm";
 import MoviesList from "components/MoviesList/MoviesList";
 import { fetchMovieByName } from "helper/API";
@@ -6,27 +7,27 @@ import { fetchMovieByName } from "helper/API";
 
 const Movies = () => {
 
-    const [name, setName] = useState('');
     const [arrMovies, setArrMovies] = useState(null);
-    
-    console.log(arrMovies);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const query = searchParams.get("query") ?? "";
+
+    console.log('searchParams', query);
 
     useEffect(() => {
-        if (name) {
-            fetchMovieByName(name)
+        if (query) {
+            fetchMovieByName(query)
                 .then(data => setArrMovies(data.results))
                 .catch(err => console.log(err))
         };
-    }, [name]);
+    }, [query]);
 
-    const onSubmit = (name) => {
-        setName(name);
+    const onSubmit = (query) => {
+        setSearchParams({query})
     };
 
     return (
         <>
             <MoviesForm onSubmit={onSubmit} />
-
             {arrMovies && <MoviesList arrMovies={arrMovies} />}
         </>
     )

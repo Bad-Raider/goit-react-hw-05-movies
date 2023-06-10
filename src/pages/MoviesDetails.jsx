@@ -1,16 +1,17 @@
 
-import { useParams } from "react-router-dom";
+import { useParams, } from "react-router-dom";
 import { fetchMoviesDetails } from "helper/API";
-import { useEffect, useState } from "react";
+import { useEffect, useState,} from "react";
 import MovieDetailsItem from "components/MovieDetailsItem/MovieDetailsItem";
 
 const MoviesDetails = () => {
 
-
+    
     const  [film, setFilm]  = useState(null);
     const { id } = useParams();
-
-      useEffect(() => {
+        
+    
+    useEffect(() => {
         if (id || id !== '') {
             fetchMoviesDetails(id)
                 .then(data => setFilm(data))
@@ -21,23 +22,21 @@ const MoviesDetails = () => {
 
     if (film) {
         const { title, overview, genres, poster_path } = film;
-        
         let genresFull = null;
-
         if (genres) {
             genresFull = genres.map(el => el.name).join(', ');
         };
 
         return (
-            <MovieDetailsItem
-                title={title}
-                overview={overview}
-                genres={genresFull}
-                poster_path={poster_path}
-            
-            />
+
+                    <MovieDetailsItem
+                    title={title}
+                    overview={overview}
+                    genres={genresFull}
+                    poster_path={poster_path}
+                    />
         );
-    }
+    };
 
     
 };

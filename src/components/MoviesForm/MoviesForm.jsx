@@ -15,7 +15,7 @@ const MoviesForm = ({onSubmit}) => {
             return alert("Please, enter a name for the movie!")
         };
 
-        onSubmit(name)
+        onSubmit(name.toLowerCase())
         setName('');
     };
 

@@ -1,13 +1,26 @@
 import { Container } from '../components/App.styled';
-import TrendingList from 'components/TrendingList/TrendingList';
+import { useEffect, useState  } from 'react';
+import { fetchTraidingMovies } from 'helper/API';
+import MoviesList from 'components/MoviesList/MoviesList';
+
 
 
 const Home = () => {
+    
+    const [filmInfo, setFilmInfo] = useState('');
 
+    useEffect(() => {
+        fetchTraidingMovies()
+            .then(data => setFilmInfo(data.results))
+            .catch(err => console.log(err));        
+    }, []);
     return (
         <main>
             <Container>
-                <TrendingList/>
+                <>
+            <h1>Trending list</h1>
+            {filmInfo && (<MoviesList arrMovies={filmInfo} />)}
+        </>
             </Container>
         </main>
     );
