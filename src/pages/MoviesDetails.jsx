@@ -4,6 +4,7 @@ import { fetchMoviesDetails } from "helper/API";
 import { useEffect, useState, useRef} from "react";
 import MovieDetailsItem from "components/MovieDetailsItem/MovieDetailsItem";
 import { Container } from "components/App.styled";
+import {ButtonToBack} from '../components/MovieDetailsItem/MovieDetailsItem.styles'
 
 
 const MoviesDetails = () => {
@@ -18,7 +19,6 @@ const MoviesDetails = () => {
         if (id ) {
             fetchMoviesDetails(id)
                 .then(data => {
-                    console.log('data', data);
                     const { title, overview, genres, poster_path, release_date, vote_average } = data;
                     setFilm({ title, overview, genres, poster_path, release_date, vote_average })
                 })
@@ -48,9 +48,8 @@ const MoviesDetails = () => {
         }
 
         return (
-            <main>
                 <Container>
-                    <Link to={backLinkHref.current}>GO TO BACK</Link>
+                    <ButtonToBack to={backLinkHref.current}> -- GO TO BACK</ButtonToBack>
                     <MovieDetailsItem
                         title={title}
                         overview={overview}
@@ -66,7 +65,6 @@ const MoviesDetails = () => {
                     </ul>
                     <Outlet />
                 </Container >
-            </main>
         );
     };
     

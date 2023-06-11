@@ -25,7 +25,7 @@ export const Header = styled.header`
     padding: 10px;
 `;
 
-export const Container = styled.div`
+export const Container = styled.section`
     margin-left: auto;
     margin-right: auto;
     padding-left: 15px;

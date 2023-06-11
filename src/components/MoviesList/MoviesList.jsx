@@ -1,26 +1,34 @@
 import { Link, useLocation } from "react-router-dom";
-   
-const MoviesList = ({arrMovies}) => {
+import {ListItem, List, Img } from "./MoviesList.styled"
+import img from '../../placeholder.jpg';   
+
+const MoviesList = ({ arrMovies }) => {
     const location = useLocation();
     const baseUrl = 'https://image.tmdb.org/t/p/w500';
     
-    console.log('arrMovies', arrMovies);
-    
+
     return (arrMovies.length === 0)
-        ? <div>Such a film has not been made yet, try something else.</div> 
-        : (<ul>
+        ? <h3>Such a film has not been made yet, try something else.</h3> 
+        : (<List>
         {
-            arrMovies.map(({id, poster_path, title}) =>
-                <li key={id}>
-                    <img width={'100px'} src={`${baseUrl}${poster_path}`} alt={title} />
+                arrMovies.map(({ id, poster_path, title }) =>
+
+                <ListItem key={id}>
+                    <Img width={'100px'}
+                            src={
+                                poster_path
+                            ? `${baseUrl}${poster_path}`
+                            : `${img}`
+                        }
+                        alt={title} />
                     <Link
                         to={`/movies/${id}`}
                         state={{ from: location, }}
                     >{title }</Link>
-                </li>
+                </ListItem>
             )
         }
-        </ul>)
+        </List>)
 };
 
 export default MoviesList;

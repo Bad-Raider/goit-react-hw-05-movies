@@ -15,8 +15,6 @@ const MovieReviews = () => {
         }
     }, [id]);
 
-    console.log(reviews);
-
      return (
              (reviews.length === 0)
                  ? <p>We don`t have</p> 
