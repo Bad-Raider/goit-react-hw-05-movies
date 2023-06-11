@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[338],{338:function(e,t,r){r.r(t);var a=r(184);t.default=function(){return(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)("h2",{children:"404"}),(0,a.jsxs)("p",{children:["Page not found, please go to ",(0,a.jsx)("a",{href:"/goit-react-hw-05-movies",children:"Home"})," ","page. Marathone must go on..."]})]})}}}]);
+//# sourceMappingURL=338.97ca17cd.chunk.js.map
