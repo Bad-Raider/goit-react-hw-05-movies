@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 import { fetchMoviesReviews } from "helper/API"; 
 
 
@@ -33,3 +34,9 @@ const MovieReviews = () => {
 };
 
 export default MovieReviews;
+
+MovieReviews.propTypes = {
+    author: PropTypes.string,
+    content: PropTypes.string,
+    id: PropTypes.number,
+};

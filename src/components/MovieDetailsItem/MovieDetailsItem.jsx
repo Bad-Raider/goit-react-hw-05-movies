@@ -1,7 +1,8 @@
+import PropTypes from "prop-types";
 import img from '../../placeholder.jpg';   
 
 const MovieDetailsItem = ({ title, overview, genres, poster_path, year, score   }) => {
-    
+
     const baseUrl = 'https://image.tmdb.org/t/p/w500';
     return (
         <>
@@ -25,3 +26,12 @@ const MovieDetailsItem = ({ title, overview, genres, poster_path, year, score   
 };
 
 export default MovieDetailsItem;
+
+MovieDetailsItem.propTypes = {
+    title: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+    genres: PropTypes.string.isRequired,
+    poster_path: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+    score: PropTypes.string.isRequired,
+};

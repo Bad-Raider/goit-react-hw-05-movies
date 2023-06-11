@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 import { fetchMoviesCast } from "helper/API";
 import img from "../../placeholder.jpg";
 
@@ -48,3 +49,11 @@ const MovieCast = () => {
 };
 
 export default MovieCast;
+
+MovieCast.propTypes = {
+    character: PropTypes.string,
+    original_name: PropTypes.string,
+    profile_path: PropTypes.string,
+    poster_path: PropTypes.string,
+    id: PropTypes.number,
+};

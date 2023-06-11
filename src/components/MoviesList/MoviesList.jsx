@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 import {ListItem, List, Img } from "./MoviesList.styled"
 import img from '../../placeholder.jpg';   
 
@@ -32,3 +33,7 @@ const MoviesList = ({ arrMovies }) => {
 };
 
 export default MoviesList;
+
+MoviesList.propTypes = {
+    arrMovies: PropTypes.array,
+};
